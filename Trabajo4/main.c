@@ -7,10 +7,10 @@
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
-#define PWM_PERIOD 100	
+#define PWM_PERIOD 255	
 #define PWM_OFF PORTB &=~(1<<PORTB5)
 #define PWM_ON PORTB |=(1<<PORTB5)
-#define PWM_DELTA 100		// Rojo
+#define PWM_DELTA 0		// Rojo
 #include "timer.h"
 #define F_CPU 16000000UL
 #include "serialPort.h"
@@ -19,7 +19,7 @@
 volatile uint8_t flag_Blue = 1;
 volatile uint8_t flag_Red = 1;
 volatile uint8_t flag_Green = 1;
-uint16_t intensidadRojo=100;
+uint16_t intensidadRojo=0;
 
 //comunicación con la ISR
 volatile char RX_Buffer=0;
@@ -44,14 +44,14 @@ int main(void)
 			// Mandar medida del potenciometro al color verde
 			setGreen(0);
 			setBlue(255);
-			intensidadRojo=100;
+			intensidadRojo=255;
 		}
 		
 		if(flag_Blue){
 			// Mandar medida del potenciometro al color azul
 			setBlue(0);
 			setGreen(255);
-			intensidadRojo=100;
+			intensidadRojo=255;
 		}
 		
 		if(flag_Red){
