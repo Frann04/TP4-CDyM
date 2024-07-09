@@ -11,7 +11,8 @@
 
 void timer0_init(void);
 void timer1_init(void);
-
+void setBlue(uint16_t intensidad);
+void setGreen(uint16_t intensidad);
 
 
 #endif /* TIMER_H_ */
