@@ -649,8 +649,8 @@ void timer0_init(){    // Configuración del timer
  400:	84 bd       	out	0x24, r24	; 36
 	TCCR0B = (1 << CS01); // Prescaler de 8
  402:	85 bd       	out	0x25, r24	; 37
-	OCR0A = 20;
- 404:	94 e1       	ldi	r25, 0x14	; 20
+	OCR0A = 19;
+ 404:	93 e1       	ldi	r25, 0x13	; 19
  406:	97 bd       	out	0x27, r25	; 39
 	TIMSK0=0x02; // Habilito Interrupción por comparación
  408:	80 93 6e 00 	sts	0x006E, r24	; 0x80006e <__TEXT_REGION_LENGTH__+0x7f806e>
@@ -661,19 +661,19 @@ void timer0_init(){    // Configuración del timer
 00000410 <timer1_init>:
 }
 
-// Configuramos el timer con una frecuencia de 7812.5 Hz, mayor a los 50 Hz requeridos
+// Configuramos el timer con una frecuencia de 62500 Hz, mayor a los 50 Hz requeridos
 // Inicialmente configuaramos el comparadoer en 0, led apagado
 void timer1_init(){
-	OCR1A = 0;							// Blue
+	OCR1A = 0;							// Contador color azul
  410:	10 92 89 00 	sts	0x0089, r1	; 0x800089 <__TEXT_REGION_LENGTH__+0x7f8089>
  414:	10 92 88 00 	sts	0x0088, r1	; 0x800088 <__TEXT_REGION_LENGTH__+0x7f8088>
-	OCR1B = 0;							// Verde
+	OCR1B = 0;							// Contador color Verde
  418:	10 92 8b 00 	sts	0x008B, r1	; 0x80008b <__TEXT_REGION_LENGTH__+0x7f808b>
  41c:	10 92 8a 00 	sts	0x008A, r1	; 0x80008a <__TEXT_REGION_LENGTH__+0x7f808a>
 	TCCR1A = (1<<COM1A1) | (1<<COM1B1) | (1<<WGM10);	// Modo 5 fast no invertido
  420:	81 ea       	ldi	r24, 0xA1	; 161
  422:	80 93 80 00 	sts	0x0080, r24	; 0x800080 <__TEXT_REGION_LENGTH__+0x7f8080>
-	TCCR1B =  (1<<WGM12) | (1<<CS10);		// prescaler 8
+	TCCR1B =  (1<<WGM12) | (1<<CS10);		// prescaler 1
  426:	89 e0       	ldi	r24, 0x09	; 9
  428:	80 93 81 00 	sts	0x0081, r24	; 0x800081 <__TEXT_REGION_LENGTH__+0x7f8081>
 	
