@@ -52,7 +52,7 @@ int main(void)
 			// Mandar medida del potenciometro al color verde
 			ext_adc = ADC_GetData(); // Leer del potenciómetro
 			intensidad = ext_adc * (0.2490234) ;
-			print_adc_value(intensidad);
+			// print_adc_value(intensidad); Imprimir valor
 			setGreen(intensidad);
 		}
 		
@@ -60,7 +60,7 @@ int main(void)
 			// Mandar medida del potenciometro al color azul
 			ext_adc = ADC_GetData(); // Leer del potenciómetro
 			intensidad = ext_adc * (0.2490234) ;
-			print_adc_value(intensidad);
+			// print_adc_value(intensidad); Imprimir valor
 			setBlue(intensidad);
 		}
 		
@@ -68,7 +68,7 @@ int main(void)
 			// Mandar medida del potenciometro al color rojo
 			ext_adc = ADC_GetData(); // Leer del potenciómetro
 			intensidad = ext_adc * (0.2490234) ;
-			print_adc_value(intensidad);
+			// print_adc_value(intensidad); Imprimir valor
 			intensidadRojo=intensidad;
 		}
     }
@@ -102,22 +102,17 @@ void print_adc_value(uint16_t value) {
 ISR(USART_RX_vect) {
 	RX_Buffer = UDR0; // La lectura de UDR0 borra el flag RXC
 
-	if (RX_Buffer == 'B') { // Comprobar si el carácter recibido es 's' o 'S'
-		SerialPort_Send_String("blueee"); // Pausar la transmisión si ya se había iniciado
+	if (RX_Buffer == 'B') { // Comprobar si el carácter recibido es 'B' para modificar el color azul
 		flag_Blue=1;
 		flag_Red=0;
 		flag_Green=0;
 	}
-	if (RX_Buffer == 'R') { // Comprobar si el carácter recibido es 's' o 'S'
-		SerialPort_Send_String("red"); // Pausar la transmisión si ya se había iniciado
-
+	if (RX_Buffer == 'R') { // Comprobar si el carácter recibido es 'R' para modificar el color rojo
 		flag_Blue=0;
 		flag_Red=1;
 		flag_Green=0;
 	}
-	if (RX_Buffer == 'G') { // Comprobar si el carácter recibido es 's' o 'S'
-		SerialPort_Send_String("green"); // Pausar la transmisión si ya se había iniciado
-
+	if (RX_Buffer == 'G') { // Comprobar si el carácter recibido es 'G' para modificar el color verde
 		flag_Blue=0;
 		flag_Red=0;
 		flag_Green=1;
